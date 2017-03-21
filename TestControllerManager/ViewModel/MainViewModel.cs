@@ -1,29 +1,35 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
+using System.Windows.Data;
 
 using TestControllerManager.Model;
 
 
 namespace TestControllerManager.ViewModel
 {
-    public interface IMainViewModel: INotifyPropertyChanged
-    {
-        string Foo { get; set; }
-        int Bar { get; set; }
-    }
-
-    public class MainWindowViewModel : IMainViewModel
+    public class MainViewModel : IMainViewModel
     {
         private MainWindowData myData;
+        
+        private readonly ObservableCollection<ITestControllerViewModel> myTestControllers;
+        public ICollectionView TestControllers
+        {
+            get
+            {
+                var result = CollectionViewSource.GetDefaultView(myTestControllers);
+                //result.SortDescriptions.Add(new SortDescription("IsFavourite", ListSortDirection.Descending));
+                //result.SortDescriptions.Add(new SortDescription("IsSpecial", ListSortDirection.Descending));
+                //result.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+                return result;
+            }
+        }
 
-        public MainWindowViewModel()
+        public MainViewModel()
         {
             myData = new MainWindowData();
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                Foo = "hello";
-            }
+            Foo = "hello";
+            Bar = 21;
         }
 
         public string Foo

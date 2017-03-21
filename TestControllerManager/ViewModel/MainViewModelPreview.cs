@@ -5,18 +5,19 @@ using TestControllerManager.Model;
 
 namespace TestControllerManager.ViewModel
 {
-    public class MainWindowViewModelPreview: IMainViewModel
+    public class MainViewModelPreview: IMainViewModel
     {
         private MainWindowData myData;
 
-        public MainWindowViewModelPreview()
+        public MainViewModelPreview()
         {
-            Foo = "Test Test Test";
+            Foo = "Test Foo Test Foo Test Foo";
             Bar = 42;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public string Foo { get; set; }
         public int Bar { get; set; }
+        public ICollectionView TestControllers { get; private set; }
     }
 }
