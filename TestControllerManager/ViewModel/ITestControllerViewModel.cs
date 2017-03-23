@@ -24,9 +24,16 @@ namespace TestControllerManager.ViewModel
         private string myAvailabilityText;
         private bool myIsSelected;
 
-        public TestControllerViewModel()
+        public TestControllerViewModel(string name, bool isFavourite)
         {
-            
+            myModel = new TestControllerData()
+            {
+                Name = name,
+                IsFavourite = isFavourite
+            };
+            IsAvailable = true;
+            AvailabilityText = "status is unkown yet";
+            IsSelected = false;
         }
 
         public string Name
