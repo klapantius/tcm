@@ -3,6 +3,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
 
+using Microsoft.TeamFoundation.Build.Client;
+
+using TestControllerManager.BusinessLogic;
 using TestControllerManager.Model;
 
 
@@ -11,6 +14,7 @@ namespace TestControllerManager.ViewModel
     public class MainViewModel : IMainViewModel
     {
         private MainWindowData myData;
+        private readonly ITestControllerFactory myTestControllerFactory;
         
         private readonly ObservableCollection<ITestControllerViewModel> myTestControllers;
         public ICollectionView TestControllers
@@ -25,8 +29,9 @@ namespace TestControllerManager.ViewModel
             }
         }
 
-        public MainViewModel()
+        public MainViewModel(IBuildServer buildServer, ITestControllerFactory testControllerFactory)
         {
+            myTestControllerFactory = testControllerFactory;
             myData = new MainWindowData();
             Foo = "hello";
             Bar = 21;

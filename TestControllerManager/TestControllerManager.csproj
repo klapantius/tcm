@@ -55,8 +55,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.TeamFoundation.Build.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.TeamFoundation.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.TeamFoundation.Build.Client" />
+    <Reference Include="Microsoft.TeamFoundation.Client" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.Common" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.ControllerObject" />
     <Reference Include="SimpleInjector">
       <HintPath>packages\SimpleInjector.3.3.2\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
@@ -80,10 +82,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\Configuration.cs" />
-    <Compile Include="Infrastructure\DispatcherService.cs" />
-    <Compile Include="Infrastructure\IDispatcherService.cs" />
-    <Compile Include="Infrastructure\BuildServerWrapper.cs" />
+    <Compile Include="BusinessLogic\Configuration.cs" />
+    <Compile Include="BusinessLogic\DispatcherService.cs" />
+    <Compile Include="BusinessLogic\IDispatcherService.cs" />
+    <Compile Include="BusinessLogic\BuildServerWrapper.cs" />
+    <Compile Include="BusinessLogic\ITestAgent.cs" />
+    <Compile Include="BusinessLogic\ITestController.cs" />
+    <Compile Include="BusinessLogic\ITestControllerFactory.cs" />
+    <Compile Include="BusinessLogic\TestAgent.cs" />
+    <Compile Include="BusinessLogic\TestController.cs" />
+    <Compile Include="BusinessLogic\TestControllerFactory.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\IMainViewModel.cs" />
     <Compile Include="ViewModel\ITestControllerViewModel.cs" />

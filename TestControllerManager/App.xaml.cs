@@ -1,5 +1,10 @@
 ﻿using System.Windows;
+
+using Microsoft.TeamFoundation.Build.Client;
+
 using SimpleInjector;
+
+using TestControllerManager.BusinessLogic;
 using TestControllerManager.ViewModel;
 
 
@@ -13,6 +18,8 @@ namespace TestControllerManager
         private void OnStartup(object sender, StartupEventArgs e)
         {
             var ioc = new Container();
+            ioc.Register<ITestControllerFactory, TestControllerFactory>(Lifestyle.Singleton);
+            ioc.Register<IBuildServer, BuildServerWrapper>(Lifestyle.Singleton);
             ioc.Register(() => Dispatcher, Lifestyle.Singleton);
             ioc.Register<IDispatcherService, DispatcherService>();
             ioc.Register<IMainViewModel, MainViewModel>();
