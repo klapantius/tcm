@@ -5,10 +5,10 @@
         mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModel="clr-namespace:TestControllerManager.ViewModel"
-        d:DataContext="{d:DesignInstance Type=viewModel:MainWindowViewModelPreview, IsDesignTimeCreatable=True}"
+        d:DataContext="{d:DesignInstance Type=viewModel:MainViewModelPreview, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="350" Width="600"
         >
-    <Window.DataContext><viewModel:MainViewModel ></viewModel:MainViewModel></Window.DataContext>
+    <!--<Window.DataContext><viewModel:MainViewModel></viewModel:MainViewModel></Window.DataContext>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -19,7 +19,7 @@
                 <ColumnDefinition MinWidth="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Name="FooLabel" Grid.Column="0" Content="{Binding Path=Foo}" />
+            <ComboBox Name="TestControllerSelectionComboBox" Grid.Column="0" ItemsSource="{Binding Path=TestControllers}" />
             <TextBox Name="BarText" Grid.Column="1" IsEnabled="True" Text="{Binding Path=Bar}" />
         </Grid>
     </Grid>

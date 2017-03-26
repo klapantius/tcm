@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Data;
 
 using Microsoft.TeamFoundation.Build.Client;
@@ -15,6 +17,7 @@ namespace TestControllerManager.ViewModel
     {
         private readonly IConfiguration myConfiguration;
         private readonly ITestControllerFactory myTestControllerFactory;
+        private readonly IDispatcherService myDispatcher;
 
         private MainWindowData myData;
         
@@ -24,29 +27,32 @@ namespace TestControllerManager.ViewModel
             get
             {
                 var result = CollectionViewSource.GetDefaultView(myTestControllers);
-                //result.SortDescriptions.Add(new SortDescription("IsFavourite", ListSortDirection.Descending));
+                result.SortDescriptions.Add(new SortDescription("IsFavourite", ListSortDirection.Descending));
                 //result.SortDescriptions.Add(new SortDescription("IsSpecial", ListSortDirection.Descending));
-                //result.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+                result.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
                 return result;
             }
         }
 
-        public MainViewModel(IConfiguration configuration, IBuildServer buildServer, ITestControllerFactory testControllerFactory)
+        public MainViewModel(IConfiguration configuration, IBuildServer buildServer, ITestControllerFactory testControllerFactory, IDispatcherService dispatcher)
         {
             myTestControllerFactory = testControllerFactory;
+            myDispatcher = dispatcher;
             myData = new MainWindowData();
-            Foo = "hello";
-            Bar = 21;
+
+            LoadFavouriteControllers();
         }
 
-        public string Foo
+        private async void LoadFavouriteControllers()
         {
-            get { return myData.Foo; }
-            set
+            var favs = myConfiguration.Favourites.Split(',');
+
+            await Task.Run(() =>
             {
-                myData.Foo = value;
-                OnPropertyChanged();
-            }
+                favs.Select(f => new TestControllerViewModel(f, true))
+                    .ToList()
+                    .ForEach(c => myDispatcher.InvokeAsync(() => myTestControllers.Add(c)));
+            });
         }
 
         public int Bar

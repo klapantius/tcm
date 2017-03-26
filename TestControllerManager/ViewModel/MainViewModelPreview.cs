@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 
 using TestControllerManager.Model;
@@ -14,15 +15,17 @@ namespace TestControllerManager.ViewModel
 
         public MainViewModelPreview()
         {
-            Foo = "Test Foo Test Foo Test Foo";
             Bar = 42;
             myTestControllers = new ObservableCollection<ITestControllerViewModel>()
             {
+                new TestControllerViewModel("Favourite 1", true),
+                new TestControllerViewModel("Favourite 2", true),
             };
+            myTestControllers.First().IsSelected = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public string Foo { get; set; }
+
         public int Bar { get; set; }
 
         public ICollectionView TestControllers
