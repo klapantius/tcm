@@ -13,8 +13,10 @@ namespace TestControllerManager.ViewModel
 {
     public class MainViewModel : IMainViewModel
     {
-        private MainWindowData myData;
+        private readonly IConfiguration myConfiguration;
         private readonly ITestControllerFactory myTestControllerFactory;
+
+        private MainWindowData myData;
         
         private readonly ObservableCollection<ITestControllerViewModel> myTestControllers;
         public ICollectionView TestControllers
@@ -29,7 +31,7 @@ namespace TestControllerManager.ViewModel
             }
         }
 
-        public MainViewModel(IBuildServer buildServer, ITestControllerFactory testControllerFactory)
+        public MainViewModel(IConfiguration configuration, IBuildServer buildServer, ITestControllerFactory testControllerFactory)
         {
             myTestControllerFactory = testControllerFactory;
             myData = new MainWindowData();

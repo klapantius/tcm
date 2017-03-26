@@ -20,6 +20,7 @@ namespace TestControllerManager
             var ioc = new Container();
             ioc.Register<ITestControllerFactory, TestControllerFactory>(Lifestyle.Singleton);
             ioc.Register<IBuildServer, BuildServerWrapper>(Lifestyle.Singleton);
+            ioc.Register<IConfiguration, Configuration>(Lifestyle.Singleton);
             ioc.Register(() => Dispatcher, Lifestyle.Singleton);
             ioc.Register<IDispatcherService, DispatcherService>();
             ioc.Register<IMainViewModel, MainViewModel>();
