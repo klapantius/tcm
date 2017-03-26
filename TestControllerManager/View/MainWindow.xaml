@@ -19,7 +19,7 @@
                 <ColumnDefinition MinWidth="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ComboBox Name="TestControllerSelectionComboBox" Grid.Column="0" ItemsSource="{Binding Path=TestControllers}" />
+            <ComboBox Name="TestControllerSelectionComboBox" Grid.Column="0" ItemsSource="{Binding Path=TestControllers}" SelectionChanged="TestControllerSelectionComboBox_OnSelectionChanged" HorizontalAlignment="Left" Width="500" />
             <TextBox Name="BarText" Grid.Column="1" IsEnabled="True" Text="{Binding Path=Bar}" />
         </Grid>
     </Grid>

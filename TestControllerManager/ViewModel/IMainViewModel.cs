@@ -7,5 +7,6 @@ namespace TestControllerManager.ViewModel
     {
         int Bar { get; set; }
         ICollectionView TestControllers { get; }
+        ITestControllerViewModel TestController { get; set; }
     }
 }

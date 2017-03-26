@@ -79,5 +79,10 @@ namespace TestControllerManager.ViewModel
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

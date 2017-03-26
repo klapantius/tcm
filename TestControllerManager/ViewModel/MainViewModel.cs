@@ -22,6 +22,8 @@ namespace TestControllerManager.ViewModel
         private MainWindowData myData;
         
         private readonly ObservableCollection<ITestControllerViewModel> myTestControllers;
+        private ITestControllerViewModel myTestController;
+
         public ICollectionView TestControllers
         {
             get
@@ -73,6 +75,14 @@ namespace TestControllerManager.ViewModel
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        public ITestControllerViewModel TestController
+        {
+            get { return myTestController; }
+            set
+            {
+                myTestController = value;
+                // change list of test agents
+            }
+        }
     }
 }

@@ -21,7 +21,6 @@ namespace TestControllerManager.ViewModel
                 new TestControllerViewModel("Favourite 1", true),
                 new TestControllerViewModel("Favourite 2", true),
             };
-            myTestControllers.First().IsSelected = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -35,5 +34,7 @@ namespace TestControllerManager.ViewModel
                 return CollectionViewSource.GetDefaultView(myTestControllers);
             }
         }
+
+        public ITestControllerViewModel TestController { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 using TestControllerManager.ViewModel;
@@ -11,15 +12,26 @@ namespace TestControllerManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IMainViewModel myMainViewModel;
+        private readonly IMainViewModel myViewModel;
         private readonly IDispatcherService myDispatcher;
 
         public MainWindow(IDispatcherService dispatcher, IMainViewModel mainViewModel)
         {
             InitializeComponent();
 
-            myMainViewModel = mainViewModel;
+            myViewModel = mainViewModel;
             myDispatcher = dispatcher;
+
+        }
+
+        private void TestControllerSelectionComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e == null) return;
+            var selectionChangedEvent = (SelectionChangedEventArgs)e;
+            myViewModel.TestController =
+                (selectionChangedEvent.AddedItems == null || selectionChangedEvent.AddedItems.Count == 0) ?
+                    null :
+                    (TestControllerViewModel)selectionChangedEvent.AddedItems[0];
 
         }
     }
