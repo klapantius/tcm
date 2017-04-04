@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Microsoft.TeamFoundation.Build.Client;
+using Microsoft.TeamFoundation.Client;
 
 
 namespace TestControllerManager.BusinessLogic
