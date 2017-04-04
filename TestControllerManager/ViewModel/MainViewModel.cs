@@ -16,6 +16,7 @@ namespace TestControllerManager.ViewModel
     public class MainViewModel : IMainViewModel
     {
         private readonly IConfiguration myConfiguration;
+        private readonly IBuildServer myBuildServer;
         private readonly ITestControllerFactory myTestControllerFactory;
         private readonly IDispatcherService myDispatcher;
 
@@ -38,6 +39,9 @@ namespace TestControllerManager.ViewModel
 
         public MainViewModel(IConfiguration configuration, IBuildServer buildServer, ITestControllerFactory testControllerFactory, IDispatcherService dispatcher)
         {
+            myConfiguration = configuration;
+            myBuildServer = buildServer;
+            myTestControllers = new ObservableCollection<ITestControllerViewModel>();
             myTestControllerFactory = testControllerFactory;
             myDispatcher = dispatcher;
             myData = new MainWindowData();

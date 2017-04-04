@@ -20,10 +20,11 @@ namespace TestControllerManager
         {
             var ioc = new Container();
 
-            if (e.Args.Length > 0 && e.Args[1].Equals("/test", StringComparison.InvariantCulture))
+            if (e.Args.Length > 0 && e.Args[0].Equals("/test", StringComparison.InvariantCulture))
             {
                 ioc.Register<ITestControllerFactory, FakeTestControllerFactory>(Lifestyle.Singleton);
                 ioc.Register<IBuildServer, FakeBuildServer>(Lifestyle.Singleton);
+                ioc.Register<IConfiguration, FakeConfiguration>(Lifestyle.Singleton);
             }
             else
             {
@@ -31,12 +32,12 @@ namespace TestControllerManager
                 ioc.Register<ITfsTeamProjectCollection, TfsTeamProjectCollectionWrapper>(Lifestyle.Singleton);
                 ioc.Register(() => new Uri("https://tfs.healthcare.siemens.com:8090/tfs/ikm.tpc.projects"), Lifestyle.Singleton);
                 ioc.Register(() => ioc.GetInstance<ITfsTeamProjectCollection>().GetService<IBuildServer>());
+                ioc.Register<IConfiguration, Configuration>(Lifestyle.Singleton);
             }
-            ioc.Register<IConfiguration, Configuration>(Lifestyle.Singleton);
             ioc.Register<IMainViewModel, MainViewModel>();
-            ioc.Register<MainWindow, MainWindow>();
             ioc.Register(() => Dispatcher, Lifestyle.Singleton);
             ioc.Register<IDispatcherService, DispatcherService>();
+            ioc.Register<MainWindow, MainWindow>();
 
             MainWindow = ioc.GetInstance<MainWindow>();
 

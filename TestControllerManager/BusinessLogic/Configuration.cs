@@ -77,7 +77,7 @@ namespace TestControllerManager
         }
     }
 
-    internal class DefaultConfiguration : IConfiguration
+    public class DefaultConfiguration : IConfiguration
     {
         public string TpcUri { get { return "https://tfs.healthcare.siemens.com:8090/tfs/ikm.tpc.projects"; } }
         public string TeamProject { get { return "syngo.net"; } }

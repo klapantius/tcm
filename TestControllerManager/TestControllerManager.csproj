@@ -85,6 +85,7 @@
     <Compile Include="BusinessLogic\Configuration.cs" />
     <Compile Include="BusinessLogic\DispatcherService.cs" />
     <Compile Include="BusinessLogic\FakeBuildServer.cs" />
+    <Compile Include="BusinessLogic\FakeConfiguration.cs" />
     <Compile Include="BusinessLogic\FakeTestAgent.cs" />
     <Compile Include="BusinessLogic\FakeTestController.cs" />
     <Compile Include="BusinessLogic\FakeTestControllerFactory.cs" />
