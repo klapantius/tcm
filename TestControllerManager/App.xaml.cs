@@ -30,7 +30,8 @@ namespace TestControllerManager
             {
                 ioc.Register<ITestControllerFactory, TestControllerFactory>(Lifestyle.Singleton);
                 ioc.Register<ITfsTeamProjectCollection, TfsTeamProjectCollectionWrapper>(Lifestyle.Singleton);
-                ioc.Register(() => new Uri("https://tfs.healthcare.siemens.com:8090/tfs/ikm.tpc.projects"), Lifestyle.Singleton);
+                //todo: IConfiguration shall provide Uri type here
+                ioc.Register(() => new Uri(ioc.GetInstance<IConfiguration>().TpcUri), Lifestyle.Singleton);
                 ioc.Register(() => ioc.GetInstance<ITfsTeamProjectCollection>().GetService<IBuildServer>());
                 ioc.Register<IConfiguration, Configuration>(Lifestyle.Singleton);
             }

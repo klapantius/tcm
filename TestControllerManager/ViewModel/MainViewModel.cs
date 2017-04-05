@@ -86,6 +86,7 @@ namespace TestControllerManager.ViewModel
             {
                 myTestController = value;
                 // change list of test agents
+                OnPropertyChanged();
             }
         }
     }
