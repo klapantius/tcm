@@ -100,8 +100,10 @@
     <Compile Include="BusinessLogic\TfsTeamProjectCollectionWrapper.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\IMainViewModel.cs" />
+    <Compile Include="ViewModel\ITestAgentViewModel.cs" />
     <Compile Include="ViewModel\ITestControllerViewModel.cs" />
     <Compile Include="ViewModel\MainViewModelPreview.cs" />
+    <Compile Include="ViewModel\TestAgentViewModel.cs" />
     <Compile Include="ViewModel\TestControllerViewModel.cs" />
     <Compile Include="View\WinAPI\NativeMethods.cs" />
     <Page Include="View\MainWindow.xaml">

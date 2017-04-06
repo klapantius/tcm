@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Data;
 
 using TestControllerManager.Model;
@@ -12,6 +11,7 @@ namespace TestControllerManager.ViewModel
     {
         private MainWindowData myData;
         private readonly ObservableCollection<ITestControllerViewModel> myTestControllers;
+        //private readonly ObservableCollection<ITestAgentViewModel> myTestAgents;
 
         public MainViewModelPreview()
         {

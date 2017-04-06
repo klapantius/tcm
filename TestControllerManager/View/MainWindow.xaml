@@ -55,5 +55,36 @@
 
             </Grid>
         </Grid>
+        <ScrollViewer Name="AgentScrollViewer" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
+            <DataGrid Name="AgentGrid" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding TestAgents}"
+                      VerticalScrollBarVisibility="Disabled" SelectionUnit="FullRow" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Agent" Binding="{Binding Name, Mode=OneWay}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,0,15,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status, Mode=OneWay}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,0,15,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Schedule" Binding="{Binding Scheduled, Mode=OneWay}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="TextAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="0,0,15,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Details" Binding="{Binding Path=StatusDetails, Mode=OneWay}">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Window>

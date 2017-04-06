@@ -17,7 +17,7 @@ namespace TestControllerManager.BusinessLogic
     {
         string Name { get; }
         IEnumerable<Tuple<string, string>> Attributes { get; }
-        bool Online { get; set; }
+        bool Online { get; }
         TestAgentStatus Status { get; }
         ITestController TestController { get; }
     }
