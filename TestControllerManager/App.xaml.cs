@@ -30,8 +30,7 @@ namespace TestControllerManager
             {
                 ioc.Register<ITestControllerFactory, TestControllerFactory>(Lifestyle.Singleton);
                 ioc.Register<ITfsTeamProjectCollection, TfsTeamProjectCollectionWrapper>(Lifestyle.Singleton);
-                //todo: IConfiguration shall provide Uri type here
-                ioc.Register(() => new Uri(ioc.GetInstance<IConfiguration>().TpcUri), Lifestyle.Singleton);
+                ioc.Register(() => ioc.GetInstance<IConfiguration>().TpcUri, Lifestyle.Singleton);
                 ioc.Register(() => ioc.GetInstance<ITfsTeamProjectCollection>().GetService<IBuildServer>());
                 ioc.Register<IConfiguration, Configuration>(Lifestyle.Singleton);
             }
