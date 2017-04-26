@@ -7,16 +7,8 @@ using Microsoft.TeamFoundation.Client;
 
 namespace TestControllerManager.BusinessLogic
 {
-    internal class BuildServerWrapper : IBuildServer
+    public class FakeBuildServer:IBuildServer
     {
-        private IBuildServer myBuildServer;
-
-        public BuildServerWrapper(string uri)
-        {
-            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(uri));
-            myBuildServer = tpc.GetService<IBuildServer>();
-        }
-
         public IBuildDefinition CreateBuildDefinition(string teamProject)
         {
             throw new NotImplementedException();
@@ -104,7 +96,7 @@ namespace TestControllerManager.BusinessLogic
 
         public IBuildDefinitionSpec CreateBuildDefinitionSpec(string teamProject)
         {
-            return myBuildServer.CreateBuildDefinitionSpec(teamProject);
+            throw new NotImplementedException();
         }
 
         public IBuildDefinitionSpec CreateBuildDefinitionSpec(string teamProject, string definitionName)

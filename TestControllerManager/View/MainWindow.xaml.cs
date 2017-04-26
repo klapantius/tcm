@@ -22,6 +22,7 @@ namespace TestControllerManager
             myViewModel = mainViewModel;
             myDispatcher = dispatcher;
 
+            DataContext = myViewModel;
         }
 
         private void TestControllerSelectionComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

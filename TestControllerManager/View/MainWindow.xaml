@@ -6,9 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModel="clr-namespace:TestControllerManager.ViewModel"
         d:DataContext="{d:DesignInstance Type=viewModel:MainViewModelPreview, IsDesignTimeCreatable=True}"
-        Title="MainWindow" Height="350" Width="600"
-        >
-    <!--<Window.DataContext><viewModel:MainViewModel></viewModel:MainViewModel></Window.DataContext>-->
+        Title="MainWindow" Height="480" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -19,8 +17,74 @@
                 <ColumnDefinition MinWidth="500" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ComboBox Name="TestControllerSelectionComboBox" Grid.Column="0" ItemsSource="{Binding Path=TestControllers}" SelectionChanged="TestControllerSelectionComboBox_OnSelectionChanged" HorizontalAlignment="Left" Width="500" />
-            <TextBox Name="BarText" Grid.Column="1" IsEnabled="True" Text="{Binding Path=Bar}" />
+            <Grid Name="MachinesGrid" Grid.Column="0"  Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox Name="TestControllerSelectionComboBox"
+                          Grid.Row="0" Grid.Column="0" Margin="5" HorizontalContentAlignment="Stretch"
+                          ItemsSource="{Binding Path=TestControllers}" SelectionChanged="TestControllerSelectionComboBox_OnSelectionChanged">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <!--<Setter Property="ToolTip" Value="{StaticResource ControllerToolTip}" />-->
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsFavourite}" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsFavourite}" Value="False">
+                                    <Setter Property="FontWeight" Value="Normal" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsAvailable}" Value="False">
+                                    <Setter Property="Foreground" Value="LightGray" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsAvailable}" Value="True">
+                                    <Setter Property="Foreground" Value="Black" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+                <CheckBox Name="IsFavouriteControllerCheckBox" Grid.Row="0" Grid.Column="1" ToolTip="favourite test controller" Margin="5,12" VerticalAlignment="Center" IsChecked="{Binding TestController.IsFavourite}" />
+
+            </Grid>
         </Grid>
+        <ScrollViewer Name="AgentScrollViewer" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
+            <DataGrid Name="AgentGrid" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding TestAgents}"
+                      VerticalScrollBarVisibility="Disabled" SelectionUnit="FullRow" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Agent" Binding="{Binding Name, Mode=OneWay}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,0,15,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status, Mode=OneWay}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,0,15,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Schedule" Binding="{Binding Scheduled, Mode=OneWay}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="TextAlignment" Value="Center" />
+                                <Setter Property="Margin" Value="0,0,15,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Details" Binding="{Binding Path=StatusDetails, Mode=OneWay}">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Window>
