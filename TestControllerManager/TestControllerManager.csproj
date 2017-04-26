@@ -89,6 +89,7 @@
     <Compile Include="BusinessLogic\FakeTestAgent.cs" />
     <Compile Include="BusinessLogic\FakeTestController.cs" />
     <Compile Include="BusinessLogic\FakeTestControllerFactory.cs" />
+    <Compile Include="BusinessLogic\IConfiguration.cs" />
     <Compile Include="BusinessLogic\IDispatcherService.cs" />
     <Compile Include="BusinessLogic\ITfsTeamProjectCollection.cs" />
     <Compile Include="BusinessLogic\ITestAgent.cs" />
