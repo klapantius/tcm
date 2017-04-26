@@ -6,22 +6,10 @@ using System.Xml.Serialization;
 
 namespace TestControllerManager
 {
-    public interface IConfiguration
-    {
-        string TpcUri { get; }
-        string TeamProject { get; }
-        string Favourites { get; }
-        bool AgentMonitoringEnabled { get; }
-        int Port { get; }
-        string DomainSuffix { get; }
-
-        void Save();
-    }
-
     [Serializable, XmlType("Configuration")]
     public class Configuration : IConfiguration
     {
-        public string TpcUri { get { return myLoadedConfiguration.TpcUri; } }
+        public Uri TpcUri { get { return myLoadedConfiguration.TpcUri; } }
         public string TeamProject { get { return myLoadedConfiguration.TeamProject; } }
         public string Favourites { get { return myLoadedConfiguration.Favourites; } }
         public bool AgentMonitoringEnabled { get { return myLoadedConfiguration.AgentMonitoringEnabled; } }
@@ -79,7 +67,7 @@ namespace TestControllerManager
 
     internal class DefaultConfiguration : IConfiguration
     {
-        public string TpcUri { get { return "https://tfs.healthcare.siemens.com:8090/tfs/ikm.tpc.projects"; } }
+        public Uri TpcUri { get { return new Uri("https://tfs.healthcare.siemens.com:8090/tfs/ikm.tpc.projects"); } }
         public string TeamProject { get { return "syngo.net"; } }
         public string Favourites { get { return "FO9DE01T2230VD,FO9DE01T2209VD"; } }
         public bool AgentMonitoringEnabled { get { return true; } }

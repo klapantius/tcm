@@ -84,6 +84,8 @@
     </ApplicationDefinition>
     <Compile Include="BusinessLogic\Configuration.cs" />
     <Compile Include="BusinessLogic\DispatcherService.cs" />
+    <Compile Include="BusinessLogic\Fake\FakeConfiguration.cs" />
+    <Compile Include="BusinessLogic\IConfiguration.cs" />
     <Compile Include="BusinessLogic\IDispatcherService.cs" />
     <Compile Include="BusinessLogic\BuildServerWrapper.cs" />
     <Compile Include="BusinessLogic\ITestAgent.cs" />
