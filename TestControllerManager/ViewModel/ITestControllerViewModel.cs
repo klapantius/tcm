@@ -1,4 +1,9 @@
-﻿namespace TestControllerManager.ViewModel
+﻿using System.Collections.Generic;
+
+using TestControllerManager.BusinessLogic;
+
+
+namespace TestControllerManager.ViewModel
 {
     public interface ITestControllerViewModel
     {
@@ -9,7 +14,8 @@
         bool IsSelected { get; set; }
         bool IsSpecial { get; }
         //List<ITestAgentViewModel> AgentViewModels { get; }
-        //List<ITestAgent> Agents { get; }
+        List<ITestAgentViewModel> Agents { get; }
+        void UpdateAgents();
         //void RefreshAgent(ITestAgent agent);
     }
 
@@ -17,6 +23,6 @@
     {
         public string Name;
         public bool IsFavourite;
-        //public List<ITestAgent> TestAgents;
+        public List<ITestAgent> TestAgents;
     }
 }

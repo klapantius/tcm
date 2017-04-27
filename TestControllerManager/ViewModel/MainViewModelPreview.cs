@@ -18,8 +18,8 @@ namespace TestControllerManager.ViewModel
             Bar = 42;
             myTestControllers = new ObservableCollection<ITestControllerViewModel>()
             {
-                new TestControllerViewModel("Favourite 1", true),
-                new TestControllerViewModel("Favourite 2", true),
+                new TestControllerViewModel("Favourite 1", null,  true),
+                new TestControllerViewModel("Favourite 2", null,  true),
             };
         }
 

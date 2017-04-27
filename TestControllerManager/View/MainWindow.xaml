@@ -56,7 +56,7 @@
             </Grid>
         </Grid>
         <ScrollViewer Name="AgentScrollViewer" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
-            <DataGrid Name="AgentGrid" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding TestAgents}"
+            <DataGrid Name="AgentGrid" VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding TestController.Agents}"
                       VerticalScrollBarVisibility="Disabled" SelectionUnit="FullRow" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Agent" Binding="{Binding Name, Mode=OneWay}" >

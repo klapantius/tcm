@@ -1,22 +1,28 @@
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 using TestControllerManager.Annotations;
+using TestControllerManager.BusinessLogic;
 
 
 namespace TestControllerManager.ViewModel
 {
     public class TestControllerViewModel : ITestControllerViewModel, INotifyPropertyChanged
     {
+        private ITestControllerFactory myFactory;
+        private ITestController myBusinessLogic;
         private TestControllerData myModel;
         private bool myIsAvailable;
         private string myAvailabilityText;
         private bool myIsSelected;
 
-        public TestControllerViewModel(string name, bool isFavourite)
+        public TestControllerViewModel(string name, ITestController businessLogic, bool isFavourite)
         {
             myModel = new TestControllerData();
             Name = name;
+            myBusinessLogic = businessLogic;
             IsFavourite = isFavourite;
             IsAvailable = true;
             AvailabilityText = "status is unkown yet";
@@ -32,6 +38,7 @@ namespace TestControllerManager.ViewModel
                 OnPropertyChanged();
             }
         }
+
         public bool IsFavourite
         {
             get { return myModel.IsFavourite; }
@@ -65,12 +72,19 @@ namespace TestControllerManager.ViewModel
         public bool IsSelected
         {
             get { return myIsSelected; }
-            set { myIsSelected = value; }
+            set
+            {
+                if (myIsSelected = value) OnPropertyChanged("Agents");
+            }
         }
 
-        public bool IsSpecial { get { return false; } }
+        public bool IsSpecial
+        {
+            get { return false; }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -82,5 +96,23 @@ namespace TestControllerManager.ViewModel
         {
             return Name;
         }
+
+        public List<ITestAgentViewModel> Agents { get; private set; }
+
+        public void UpdateAgents()
+        {
+            var vtas = new List<ITestAgentViewModel>();
+            myBusinessLogic.Agents.ToList()
+                .ForEach(ta =>
+                {
+                    vtas.Add(new TestAgentViewModel(ta));
+                    if (Agents.All(a => a != vtas.Last())) Agents.Add(vtas.Last());
+                });
+            var toBeDeleted = Agents.Where(a => vtas.All(vta => vta != a)).ToList();
+            toBeDeleted.ForEach(tbd => Agents.Remove(tbd));
+            OnPropertyChanged("Agents");
+            //Agents.ForEach(a => a.Update()));
+        }
+
     }
 }

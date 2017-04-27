@@ -55,7 +55,7 @@ namespace TestControllerManager.ViewModel
 
             await Task.Run(() =>
             {
-                favs.Select(f => new TestControllerViewModel(f, true))
+                favs.Select(f => new TestControllerViewModel(f, myTestControllerFactory.CreateController(f), true))
                     .ToList()
                     .ForEach(c => myDispatcher.InvokeAsync(() => myTestControllers.Add(c)));
             });
@@ -84,9 +84,12 @@ namespace TestControllerManager.ViewModel
             get { return myTestController; }
             set
             {
+                if (myTestController != null) myTestController.IsSelected = false;
                 myTestController = value;
+                myTestController.IsSelected = true;
                 // change list of test agents
                 OnPropertyChanged();
+                TestController.UpdateAgents();
             }
         }
     }
