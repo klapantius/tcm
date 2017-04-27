@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 
 using Microsoft.TeamFoundation.Build.Client;
@@ -20,11 +21,24 @@ namespace TestControllerManager
         {
             var ioc = new Container();
 
-            if (e.Args.Length > 0 && e.Args[0].Equals("/test", StringComparison.InvariantCulture))
+            Assembly assembly = null;
+            IConfiguration conf = null;
+            try
             {
-                ioc.Register<ITestControllerFactory, FakeTestControllerFactory>(Lifestyle.Singleton);
-                ioc.Register<IBuildServer, FakeBuildServer>(Lifestyle.Singleton);
-                ioc.Register<IConfiguration, FakeConfiguration>(Lifestyle.Singleton);
+                assembly = Assembly.Load(AssemblyName.GetAssemblyName("FakeBusinessLogic.dll"));
+                var obj = assembly.GetType("TestControllerManager.BusinessLogic.FakeConfiguration");
+                conf = (IConfiguration) obj;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+
+            if (e.Args.Length > 0 && e.Args[0].Equals("/test", StringComparison.InvariantCulture) && assembly != null)
+            {
+                ioc.Register(() => (ITestControllerFactory)assembly.GetType("FakeTestControllerFactory"), Lifestyle.Singleton);
+                ioc.Register(() => (IBuildServer)assembly.GetType("FakeBuildServer"), Lifestyle.Singleton);
+                ioc.Register<IConfiguration>(() => conf, Lifestyle.Singleton);
             }
             else
             {
@@ -43,5 +57,9 @@ namespace TestControllerManager
 
             MainWindow.Show();
         }
+    }
+
+    class FakedTypesLoader
+    {
     }
 }
