@@ -21,24 +21,12 @@ namespace TestControllerManager
         {
             var ioc = new Container();
 
-            Assembly assembly = null;
-            IConfiguration conf = null;
-            try
+            if (e.Args.Length > 0 && e.Args[0].Equals("/test", StringComparison.InvariantCulture))
             {
-                assembly = Assembly.Load(AssemblyName.GetAssemblyName("FakeBusinessLogic.dll"));
-                var obj = assembly.GetType("TestControllerManager.BusinessLogic.FakeConfiguration");
-                conf = (IConfiguration) obj;
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-
-            if (e.Args.Length > 0 && e.Args[0].Equals("/test", StringComparison.InvariantCulture) && assembly != null)
-            {
+                var assembly = Assembly.Load(AssemblyName.GetAssemblyName("FakeBusinessLogic.dll"));
                 ioc.Register(() => (ITestControllerFactory)assembly.GetType("FakeTestControllerFactory"), Lifestyle.Singleton);
                 ioc.Register(() => (IBuildServer)assembly.GetType("FakeBuildServer"), Lifestyle.Singleton);
-                ioc.Register<IConfiguration>(() => conf, Lifestyle.Singleton);
+                ioc.Register(typeof(IConfiguration), assembly.GetType("TestControllerManager.BusinessLogic.FakeConfiguration"), Lifestyle.Singleton);
             }
             else
             {
