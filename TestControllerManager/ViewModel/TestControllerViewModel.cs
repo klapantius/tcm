@@ -11,9 +11,8 @@ namespace TestControllerManager.ViewModel
 {
     public class TestControllerViewModel : ITestControllerViewModel, INotifyPropertyChanged
     {
-        private ITestControllerFactory myFactory;
-        private ITestController myBusinessLogic;
-        private TestControllerData myModel;
+        private readonly ITestController myBusinessLogic;
+        private readonly TestControllerData myModel;
         private bool myIsAvailable;
         private string myAvailabilityText;
         private bool myIsSelected;
@@ -75,7 +74,8 @@ namespace TestControllerManager.ViewModel
             get { return myIsSelected; }
             set
             {
-                if (myIsSelected = value) OnPropertyChanged("Agents");
+                myIsSelected = value;
+                if (myIsSelected) OnPropertyChanged("Agents");
             }
         }
 
