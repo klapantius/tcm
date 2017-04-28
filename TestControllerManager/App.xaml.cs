@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 
@@ -23,7 +24,8 @@ namespace TestControllerManager
 
             if (e.Args.Length > 0 && e.Args[0].Equals("/test", StringComparison.InvariantCulture))
             {
-                var assembly = Assembly.Load(AssemblyName.GetAssemblyName("FakeBusinessLogic.dll"));
+                var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FakeBusinessLogic.dll");
+                var assembly = Assembly.Load(AssemblyName.GetAssemblyName(filename));
                 ioc.Register(typeof(ITestControllerFactory), assembly.GetType("TestControllerManager.BusinessLogic.FakeTestControllerFactory"), Lifestyle.Singleton);
                 ioc.Register(typeof(IBuildServer), assembly.GetType("TestControllerManager.BusinessLogic.FakeBuildServer"), Lifestyle.Singleton);
                 ioc.Register(typeof(IConfiguration), assembly.GetType("TestControllerManager.BusinessLogic.FakeConfiguration"), Lifestyle.Singleton);
@@ -47,7 +49,4 @@ namespace TestControllerManager
         }
     }
 
-    class FakedTypesLoader
-    {
-    }
 }
