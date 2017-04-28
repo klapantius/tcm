@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{244C6D40
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeBusinessLogic", "..\Tests\FakeBusinessLogic\FakeBusinessLogic.csproj", "{48FF0EE8-ADE6-4F70-A017-73DF1FB64C7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestControllerManager.Interfaces", "..\TestControllerManager.Interfaces\TestControllerManager.Interfaces.csproj", "{685A821A-3F27-4390-A7E5-4DEE03666CA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,12 @@ Global
 		{48FF0EE8-ADE6-4F70-A017-73DF1FB64C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48FF0EE8-ADE6-4F70-A017-73DF1FB64C7B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48FF0EE8-ADE6-4F70-A017-73DF1FB64C7B}.Release|x86.ActiveCfg = Release|Any CPU
+		{685A821A-3F27-4390-A7E5-4DEE03666CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{685A821A-3F27-4390-A7E5-4DEE03666CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{685A821A-3F27-4390-A7E5-4DEE03666CA4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{685A821A-3F27-4390-A7E5-4DEE03666CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{685A821A-3F27-4390-A7E5-4DEE03666CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{685A821A-3F27-4390-A7E5-4DEE03666CA4}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

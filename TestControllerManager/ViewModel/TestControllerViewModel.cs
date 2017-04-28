@@ -27,6 +27,7 @@ namespace TestControllerManager.ViewModel
             IsAvailable = true;
             AvailabilityText = "status is unkown yet";
             IsSelected = false;
+            Agents=new List<ITestAgentViewModel>();
         }
 
         public string Name

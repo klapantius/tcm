@@ -24,8 +24,8 @@ namespace TestControllerManager
             if (e.Args.Length > 0 && e.Args[0].Equals("/test", StringComparison.InvariantCulture))
             {
                 var assembly = Assembly.Load(AssemblyName.GetAssemblyName("FakeBusinessLogic.dll"));
-                ioc.Register(() => (ITestControllerFactory)assembly.GetType("FakeTestControllerFactory"), Lifestyle.Singleton);
-                ioc.Register(() => (IBuildServer)assembly.GetType("FakeBuildServer"), Lifestyle.Singleton);
+                ioc.Register(typeof(ITestControllerFactory), assembly.GetType("TestControllerManager.BusinessLogic.FakeTestControllerFactory"), Lifestyle.Singleton);
+                ioc.Register(typeof(IBuildServer), assembly.GetType("TestControllerManager.BusinessLogic.FakeBuildServer"), Lifestyle.Singleton);
                 ioc.Register(typeof(IConfiguration), assembly.GetType("TestControllerManager.BusinessLogic.FakeConfiguration"), Lifestyle.Singleton);
             }
             else

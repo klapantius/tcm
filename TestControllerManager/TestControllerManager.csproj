@@ -83,14 +83,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BusinessLogic\Configuration.cs" />
-    <Compile Include="BusinessLogic\DefaultConfiguration.cs" />
     <Compile Include="BusinessLogic\DispatcherService.cs" />
-    <Compile Include="BusinessLogic\IConfiguration.cs" />
     <Compile Include="BusinessLogic\IDispatcherService.cs" />
     <Compile Include="BusinessLogic\ITfsTeamProjectCollection.cs" />
-    <Compile Include="BusinessLogic\ITestAgent.cs" />
-    <Compile Include="BusinessLogic\ITestController.cs" />
-    <Compile Include="BusinessLogic\ITestControllerFactory.cs" />
     <Compile Include="BusinessLogic\TestAgent.cs" />
     <Compile Include="BusinessLogic\TestController.cs" />
     <Compile Include="BusinessLogic\TestControllerFactory.cs" />
@@ -146,7 +141,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TestControllerManager.Interfaces\TestControllerManager.Interfaces.csproj">
+      <Project>{685a821a-3f27-4390-a7e5-4dee03666ca4}</Project>
+      <Name>TestControllerManager.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
